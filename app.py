@@ -1,5 +1,5 @@
 """
-Mini-blog V2 Flask vulnérable - Exercice d'audit de sécurité
+Mini-blog V3 Flask vulnérable - Exercice d'audit de sécurité
 ==========================================================
 ATTENTION : Ce code contient des vulnérabilités INTENTIONNELLES.
 Ne JAMAIS déployer en production.
