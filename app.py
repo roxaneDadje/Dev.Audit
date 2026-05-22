@@ -19,10 +19,13 @@ Lancement :
 import sqlite3
 import hashlib
 import os
+from dotenv import load_dotenv
 from flask import Flask, request, render_template_string, redirect, make_response, g
-
 app = Flask(__name__)
-app.secret_key = "dev-secret-key-123"  # secret en clair
+secret_key = os.environ.get("SECRET_KEY")
+if not secret_key:
+    raise RuntimeError("SECRET_KEY must be set in the environment (.env)")
+app.secret_key = secret_key # secret en clair
 DATABASE = "blog.db"
 
 
@@ -144,7 +147,7 @@ def login():
     error = None
     if request.method == "POST":
         username = request.form.get("username", "")
-        password = request.form.get("password", "")
+        password = request.form.get("password", "")name
 
         hashed = hashlib.md5(password.encode()).hexdigest()
 
