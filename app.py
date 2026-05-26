@@ -20,6 +20,9 @@ import sqlite3
 import hashlib
 import os
 from dotenv import load_dotenv
+
+load_dotenv()  # Charger les variables d'environnement depuis .env
+
 from flask import Flask, request, render_template_string, redirect, make_response, g
 app = Flask(__name__)
 secret_key = os.environ.get("SECRET_KEY")
@@ -147,7 +150,7 @@ def login():
     error = None
     if request.method == "POST":
         username = request.form.get("username", "")
-        password = request.form.get("password", "")name
+        password = request.form.get("password", "")
 
         hashed = hashlib.md5(password.encode()).hexdigest()
 
@@ -181,7 +184,7 @@ def search():
     db = get_db()
     cur = db.cursor()
     sql = "SELECT id, author, title, content FROM posts " \
-          "WHERE title LIKE '%" + %25' UNION SELECT 1,username,password,role FROM users-- + "%' OR content LIKE '%" + q + "%'"
+          "WHERE title LIKE '%" + q + "%' OR content LIKE '%" + q + "%'"
     try:
         cur.execute(sql)
         posts = cur.fetchall()
